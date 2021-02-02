@@ -1,5 +1,4 @@
-// Dependencies
-// =============================================================
+
 
 var User = require("../models/user.js");
 
@@ -25,7 +24,8 @@ module.exports = function (app) {
      
         return res.json(result);
       });
-    } else {
+    } 
+    else {
       User.findAll().then(function (result) {
         console.log( result);
         return res.json(result);
@@ -35,7 +35,6 @@ module.exports = function (app) {
 
   // Add a data
   app.post("/api/new", function (req, res) {
-  
     console.log("User Data:");
     console.log(req.body);
     User.create({

@@ -23,10 +23,10 @@ $("#form").on("submit", function (event) {
       email: $("#email").val().trim(),
     };
   }
-  // Send an AJAX POST-request with jQuery
+
 
   $.post("/api/new", newMember)
-    // On success, run the following code
+  
     .then(function (data) {
       // Log the data we found
       console.log(data);
