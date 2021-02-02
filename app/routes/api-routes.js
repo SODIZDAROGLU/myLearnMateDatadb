@@ -8,6 +8,7 @@ var User = require("../models/user.js");
 module.exports = function (app) {
   // Get all data
   app.get("/api/all", function (req, res) {
+    console.log(req.body)
     User.findAll({}).then(function (results) {
       res.json(results);
     });
@@ -21,6 +22,7 @@ module.exports = function (app) {
         },
       }).then(function (result) {
         console.log(result);
+     
         return res.json(result);
       });
     } else {
@@ -33,13 +35,16 @@ module.exports = function (app) {
 
   // Add a data
   app.post("/api/new", function (req, res) {
+  
     console.log("User Data:");
     console.log(req.body);
     User.create({
       email: req.body.email
     }).then(function (results) {
+   
       res.json(results);
     });
+  
   });
   // app.post("/api/new", async function (req, res) {
   //   console.log("User Data:");
