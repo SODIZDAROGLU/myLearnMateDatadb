@@ -1,13 +1,11 @@
-
-
 var User = require("../models/user.js");
-
+//var Sequelize = require("sequelize");
 // Routes
 // =============================================================
 module.exports = function (app) {
-  // Get all data
+  //Get all data
   app.get("/api/all", function (req, res) {
-    console.log(req.body)
+    console.log(req.body);
     User.findAll({}).then(function (results) {
       res.json(results);
     });
@@ -20,45 +18,24 @@ module.exports = function (app) {
           email: req.params.users,
         },
       }).then(function (result) {
-        console.log(result);
-     
-        return res.json(result);
-      });
-    } 
-    else {
-      User.findAll().then(function (result) {
-        console.log( result);
+        if (result != null) {
+          console.log("Gotcha!!!.....Email exist", result.dataValues);
+        }
         return res.json(result);
       });
     }
   });
 
-  // Add a data
-  app.post("/api/new", function (req, res) {
+  app.post("/api/new", async function (req, res) {
     console.log("User Data:");
     console.log(req.body);
-    User.create({
-      email: req.body.email
-    }).then(function (results) {
-   
-      res.json(results);
-    });
-  
+    try {
+      const user = await User.create({ email: req.body.email });
+      console.log("success", user.toJSON());
+    } catch (err) {
+      console.log(err + " = " + req.body.email);
+
+      return res.json(req.body.email);
+    }
   });
-  // app.post("/api/new", async function (req, res) {
-  //   console.log("User Data:");
-  //   //console.log(req.body);
-  //   try {
-  //    const user=  await  User.create({ email: req.body.email })
-     
-  //      console.log('success', user.toJSON());
-  //     } catch (err) {
-  //       console.log(err.message);
-  //     }   
-        
-  //   });
-
-
-
-
-}; //export
+};
