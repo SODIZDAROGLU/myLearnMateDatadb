@@ -1,5 +1,5 @@
 var User = require("../models/user.js");
-//var Sequelize = require("sequelize");
+
 // Routes
 // =============================================================
 module.exports = function (app) {
@@ -19,7 +19,7 @@ module.exports = function (app) {
         },
       }).then(function (result) {
         if (result != null) {
-          console.log("Gotcha!!!.....Email exist", result.dataValues);
+        console.log("Gotcha!!!.....Email exist", result.dataValues);
         }
         return res.json(result);
       });
@@ -27,15 +27,17 @@ module.exports = function (app) {
   });
 
   app.post("/api/new", async function (req, res) {
-    console.log("User Data:");
-    console.log(req.body);
+    // console.log(req.body);
     try {
       const user = await User.create({ email: req.body.email });
-      console.log("success", user.toJSON());
-    } catch (err) {
-      console.log(err + " = " + req.body.email);
-
-      return res.json(req.body.email);
+      console.log("SUCCESS...", user.toJSON());
+    } catch(err) {
+     console.error(err.message + " = " + err.errors[0].message  );
+     return res.json(req.body.email);
     }
   });
+ 
+
+
+
 };

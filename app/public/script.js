@@ -1,11 +1,12 @@
 $("#form").on("submit", function (event) {
   event.preventDefault();
 
-  var emailChecked = $("#email").val().trim();
+   var emailChecked = $("#email").val().trim();
   $.get("/api/" + emailChecked, function (data) {
     if (data) {
-      console.log("😆Gotcha!!!.....Email exists..", data);
+      console.log(`😆Gotcha!!!..."${emailChecked}"  exists..`);
       $("#error").html("😇Sorry..... Email is already exists!");
+      //return ;
     }
   });
 
@@ -22,13 +23,16 @@ $("#form").on("submit", function (event) {
     };
     
     $("#error").html("😄Success..!!!");
+    
+  
   }
 
-  $("#error").html("");
-  $.post("/api/new", newMember)
+ $.post("/api/new", newMember)
+  
   .then(function (data) {
-    // Log the data we found
-    console.log(data);
+   // Log the data we found
+   console.log(data);
+  
   });
 
   // Empty each input box by replacing the value with an empty string
@@ -43,3 +47,4 @@ function IsEmail(email) {
     return true;
   }
 }
+
