@@ -10,10 +10,10 @@ var sequelize = require("../config/connection.js");
 var User = sequelize.define("user", {
   email: {
     type: Sequelize.STRING,
-
-    validate: {
-      isEmail: true,
+  validate: {
+      isEmail:{msg:"You have entered an invalid email address!"}
     },
+  unique: { msg: 'Email address already in use!' }
   },
 });
 
