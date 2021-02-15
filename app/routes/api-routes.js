@@ -35,7 +35,7 @@ module.exports = function (app) {
       } else {
         console.log(`Gotcha!!!.....${req.body.email} exist`);
 
-        return res.json(user1);
+        res.send(user1);
       }
     } catch (err) {
       console.log(err.message);
