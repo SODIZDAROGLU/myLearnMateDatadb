@@ -3,13 +3,22 @@ $("#form").on("submit", function (event) {
 
   var emailChecked = $("#email").val().trim();
   $.get("/api/" + emailChecked, function (data) {
+    if(IsEmail(emailChecked)==false){
+      $("#error").html("😉..You have entered an invalid email address!!!");
+    }
     if (data) {
       console.log(`😆Gotcha!!!..."${emailChecked}"  exists..`);
 
       $("#error").html("😇Sorry..... Email is already exists!");
     
+      //$("#error").html(" ");
     }
-    if (!data && IsEmail(emailChecked)) $("#error").html("😄Success..!!!");
+       if (!data && IsEmail(emailChecked) ){
+      $("#error").html("😄Success..!!!");
+    } 
+    // if (!data && IsEmail(emailChecked)){
+    //   $("#error").html("😄Success..!!!");
+    // } 
   });
   
   var newMember = {
