@@ -12,7 +12,7 @@ var Sequelize = require("sequelize");
 //     idle: 10000
 //   }
 // });
-var sequelize = new Sequelize(CLEARDB_DATABASE_URL, {
+var sequelize = new Sequelize(process.env.DATABASE_URL, {
  
   port: 3306,
   dialect: "mysql",
