@@ -11,7 +11,7 @@ module.exports = function (app) {
   //   });
   // });
 
-  app.get("https://mylearnmatedatadb.herokuapp.com//api/:users?", function (req, res) {
+  app.get("/api/:users?", function (req, res) {
     if (req.params.users) {
       User.findOne({
         where: {
@@ -23,7 +23,7 @@ module.exports = function (app) {
     }
   });
 
-  app.post("https://mylearnmatedatadb.herokuapp.com/api/new", async function (req, res) {
+  app.post("/api/new", async function (req, res) {
     try {
       const user1 = await User.findOne({ where: { email: req.body.email } });
 
