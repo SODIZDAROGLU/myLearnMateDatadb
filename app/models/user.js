@@ -13,7 +13,7 @@ var User = sequelize.define("user", {
   validate: {
       isEmail:{msg:"You have entered an invalid email address!"}
     },
-  unique: { msg: 'Email address already in use!' }
+ // unique: { msg: 'Email address already in use!' }
   },
 });
 
